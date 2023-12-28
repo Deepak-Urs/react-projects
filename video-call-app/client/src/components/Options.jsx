@@ -54,15 +54,46 @@ const Options = ({children}) => {
                 <Typography gutterBottom variant="h6">Account info</Typography>
                 <TextField label="Name" value={name} onChange={(e) => setName(e.target.value)} fullWidth/>
                 <CopyToClipboard text={me} className={classes.margin}>
-                  <Button variant="contained" color="primary" fullWidth startIcon={<Assignment fontSize="large" /> } ></Button>
+                  <Button variant="contained" color="primary" fullWidth startIcon={<Assignment fontSize="large" /> } >
+                    Copy Your ID
+                  </Button>
                 </CopyToClipboard>
+              </Grid>
+
+              <Grid item xs={12} md={6} className={classes.padding}>
+                <Typography gutterBottom variant="h6">Make a Call</Typography>
+                <TextField label="ID to Call" value={idToCall} onChange={(e) => setIdToCall(e.target.value)} fullWidth/>
+                {callAccepted && !callEnded ? (
+                  <Button 
+                    variant="contained" 
+                    color='secondary' 
+                    startIcon={<PhoneDisabled fontSize="large"/>} 
+                    fullWidth
+                    onWidth
+                    onClick={leaveCall}
+                    className = {classes.margin}
+                    >
+                    Hang Up
+                  </Button>
+                ) : (
+                  <Button
+                    variant="contained" 
+                    color='primary' 
+                    startIcon={<Phone fontSize="large"/>} 
+                    fullWidth
+                    onWidth
+                    onClick={() => callUser(idToCall)}
+                    className = {classes.margin}>
+                    Call
+                  </Button>
+                )}
               </Grid>
             </Grid>
           </Grid>
         </form>
+        { children }
       </Paper>
-      Options
-      { children }
+      
     </Container>
   )
 }
