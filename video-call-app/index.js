@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
     res.send("Server is running!")
 })
 
-io.on('connextion', (socket) => {
+io.on('connection', (socket) => {
     // once socket connected we do
     socket.emit('me', socket.id)
 
