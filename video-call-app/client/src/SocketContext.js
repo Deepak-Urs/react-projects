@@ -6,7 +6,7 @@ import Peer from 'simple-peer'
 
 const SocketContext = createContext();
 
-const socket = io("http://localhost:5000");
+const socket = io("https://v-c-a-be.onrender.com/");
 
 const ContextProvider = ({ children }) => {
     // all fns needed to make the videochat work
