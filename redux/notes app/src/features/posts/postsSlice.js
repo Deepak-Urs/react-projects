@@ -8,12 +8,18 @@ const initialState = [
 const postsSlice = createSlice({
     name: 'posts',
     initialState,
-    reducer:{
-
+    reducers: {
+        postAdded: { 
+            reducer(state, action) {
+            // inner.js mutates the state without mutating the state as a whole(pseudo)
+                state.push(action.payload);
+            }
     }
-})
+}})
+
+export const { postAdded } = postsSlice.actions;
 
 // if any changes done here, refelcts in all components
-export const selectAllPosts = (state) => state.posts
+export const selectAllPosts = (state) => state.posts;
 
-export default postsSlice.reducer
+export default postsSlice.reducer;
