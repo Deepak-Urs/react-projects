@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, nanoid } from "@reduxjs/toolkit";
 
 const initialState = [
     {id:'1', title: 'Learning Redux Toolkit', content: 'It is good'},
@@ -13,9 +13,20 @@ const postsSlice = createSlice({
             reducer(state, action) {
             // inner.js mutates the state without mutating the state as a whole(pseudo)
                 state.push(action.payload);
+            },
+            prepare(title, content, userId) {
+                return {
+                    payload: {
+                        id: nanoid(),
+                        title,
+                        content,
+                        userId
+                    }
+                }
             }
+        }
     }
-}})
+})
 
 export const { postAdded } = postsSlice.actions;
 
