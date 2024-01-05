@@ -15,13 +15,13 @@ const AddPostForm = () => {
 
     const onTitleChanged = (e) => setTitle(e.target.value);
     const onContentChanged = (e) => setContent(e.target.value);
-    const onAuthorChanged = (e) => setUserId(e.target.value);
+    const onAuthorChanged = (e) => {console.log('e.target.value seen', e.target.value); setUserId(e.target.value)};
 
 
     const onSavePostClicked = () => {
         console.log('onSavePostClicked is called');
         if(title && content){
-            dispatch(postAdded(title, content, userId))
+            dispatch(postAdded(title, content, parseInt(userId)))
 
             setTitle('')
             setContent('')

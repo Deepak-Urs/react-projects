@@ -10,8 +10,11 @@ const PostAuthor = ({userId}) => {
     
 
     const author = users.find(user => user.id === userId)
+    console.log('author in POSTAUTHOR', author);
+    const authorName = author ? author.name : 'Unknown author'
+    console.log('authorName in POSTAUTHOR', authorName);
 
-    return <span>by {author ? author.name : 'Unknown author'}</span>
+    return <span>by {authorName}</span>
 }
 
 export default PostAuthor
