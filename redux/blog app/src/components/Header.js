@@ -6,8 +6,8 @@ const Header = () => {
         <h1>Redux Blog</h1>
         <nav>
             <ul>
-                <l1><Link to="/">Home</Link></l1>
-                <l1><Link to="post">Post</Link></l1>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="post">Post</Link></li>
             </ul>
         </nav>
       
