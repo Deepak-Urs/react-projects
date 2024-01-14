@@ -30,6 +30,19 @@ export const updatePost = createAsyncThunk('posts/updatePost', async (initialPos
     }
 })
 
+// making an API call tp update the DB
+export const deletePost = createAsyncThunk('posts/deletePost', async (initialPost) => {
+    const {id} = initialPost;
+    try {
+        const response = await axios.delete(`${POSTS_URL}/${id}`);
+        if(response?.status === 200) return initialPost;
+        return `${response?.status}: ${response.statusText}`;
+    } catch(err) {
+        return err.message;
+    }
+})
+
+
 const postsSlice = createSlice({
     name: 'posts',
     initialState,
@@ -128,6 +141,17 @@ const postsSlice = createSlice({
                 action.payload.date = new Date().toISOString();
                 const posts = state.posts.filter(post => post.id !== id);
                 state.posts = [...posts, action.payload];
+            })
+            // using the below extraReducer to update the deleted value into the client state
+            .addCase(deletePost.fulfilled, (state, action) => {
+                if(!action.payload?.id) {
+                    console.log('Delete could not be completed');
+                    console.log(action.payload);
+                    return;
+                }
+                const { id } = action.payload;
+                const posts = state.posts.filter(post => post.id !== id);
+                state.posts = posts;
             })
 
     }
