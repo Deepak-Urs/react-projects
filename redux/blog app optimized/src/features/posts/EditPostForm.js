@@ -22,7 +22,7 @@ const EditPostForm = () => {
 
     const onTitleChanged = e => setTitle(e.target.value)
     const onContentChanged = e => setContent(e.target.value)
-    const onAuthorChanged = e => setUserId(e.target.value)
+    const onAuthorChanged = e => setUserId(Number(e.target.value))
 
     // logic to check if content of editing has been changed or not
     //const canSave = [title, content, userId].every(Boolean) && requestStatus === 'idle';
